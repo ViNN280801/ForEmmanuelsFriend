@@ -1,7 +1,7 @@
 #include "Students.hpp"
 
 //#define __test_with_static_variables__
-#define __test_with_user_variables
+//#define __test_with_user_variables
 
 int main(int argc, char* argv[]){
     const short int size { 10 };
@@ -98,8 +98,7 @@ int main(int argc, char* argv[]){
     students[9].setFaculty(4);
 
 #ifdef __test_with_static_variables__
-    students->showAllInfoAboutStudent(students, size);
-    students->showAllInfoAboutStudentWithSpecificFaculty(students, size, 5);
+    students->showAllInfoAboutStudentWithSpecificFaculty(students, size, 0);
     students->showAllInfoAboutStudentWithSpecificYearOfBirth(students, size, 2002);
     students->showAllInfoAboutStudentWithSpecificFacultyAndYearInUniversity(students, size, 5, 6);
 #endif

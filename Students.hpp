@@ -74,16 +74,16 @@ public:
         return count;
     }
 
-    void showAllInfoAboutStudent(){
-        std::cout << std::endl << "==== ==== Student ==== ==== " << std::endl;
-        std::cout << "Lastname: " << this->lastname << std::endl;
-        std::cout << "Name: " << this->name << std::endl;
-        std::cout << "Patronymic: " << this->patronymic << std::endl;
-        std::cout << "Date of birth: " << this->dateOfBirth << std::endl;
-        std::cout << "Address: " << this->address << std::endl;
-        std::cout << "Telephone number: " << this->telephoneNumber << std::endl;
+    void showAllInfoAboutStudent(Student* students, short int sizeOfArr, short int iter){
+        std::cout << std::endl << "==== ==== Student #" << iter <<  " ==== ==== " << std::endl;
+        std::cout << "Lastname: " << students[iter].getLastName() << std::endl;
+        std::cout << "Name: " << students[iter].getName() << std::endl;
+        std::cout << "Patronymic: " << students[iter].getPatronymic() << std::endl;
+        std::cout << "Date of birth: " << students[iter].getDateOfBirth() << std::endl;
+        std::cout << "Address: " << students[iter].getAddress() << std::endl;
+        std::cout << "Telephone number: " << students[iter].getTelephoneNumber() << std::endl;
 
-        switch (faculty) {
+        switch (students[iter].getFaculty()){
             case FRT:
                 std::cout << "Faculty of Radio Engineering and Telecommunications. " << std::endl;
             break;
@@ -104,33 +104,44 @@ public:
             break;
             default:
                 std::cout << "Most likely that you made a mistake. " << std::endl;
-            break;
-        }
-
-        switch (getYearInUniversity()) {
+                break;
+            }
+            switch (students[iter].getYearInUniversity()) {
             case 1:
-                std::cout << this->name << " is studying in the " << getYearInUniversity()
-                          << "st year. " << this->name << " He is a bachelor. " << std::endl;
+                std::cout << students[iter].getName() << " is studying in the "
+                          << students[iter].getYearInUniversity()
+                          << "st year. " << students[iter].getName()
+                          << " He is a bachelor. " << std::endl;
             break;
             case 2:
-                std::cout << this->name << " is studying in the " << getYearInUniversity()
-                        << "nd year. " << this->name << " is a bachelor. " << std::endl;
+                std::cout << students[iter].getName() << " is studying in the "
+                          << students[iter].getYearInUniversity()
+                          << "nd year. " << students[iter].getName()
+                          << " is a bachelor. " << std::endl;
             break;
             case 3:
-                std::cout << this->name << " is studying in the " << getYearInUniversity()
-                           << "rd year. " << this->name << " is a bachelor. " << std::endl;
+                std::cout << students[iter].getName() << " is studying in the "
+                          << students[iter].getYearInUniversity()
+                           << "rd year. " << students[iter].getName()
+                           << " is a bachelor. " << std::endl;
             break;
             case 4:
-                std::cout << this->name << " is studying in the " << getYearInUniversity()
-                          << "th year. " << this->name << " is a bachelor. " << std::endl;
+                std::cout << students[iter].getName() << " is studying in the "
+                          << students[iter].getYearInUniversity()
+                          << "th year. " << students[iter].getName()
+                          << " is a bachelor. " << std::endl;
             break;
             case 5:
-                std::cout << this->name << " is studying in the " << getYearInUniversity()
-                          << "th year. " << this->name << " has a master's degree. " << std::endl;
+                std::cout << students[iter].getName() << " is studying in the "
+                          << students[iter].getYearInUniversity()
+                          << "th year. " << students[iter].getName()
+                          << " has a master's degree. " << std::endl;
             break;
             case 6:
-                std::cout << this->name << " is studying in the " << getYearInUniversity()
-                          << "th year. " << this->name << " has a master's degree. " << std::endl;
+                std::cout << students[iter].getName() << " is studying in the "
+                          << students[iter].getYearInUniversity()
+                          << "th year. " << students[iter].getName()
+                          << " has a master's degree. " << std::endl;
             break;
             default:
                 std::cout << "Most likely this student has already graduated or "
@@ -139,87 +150,6 @@ public:
         }
 
         std::cout << "==== ==== ==== ==== ==== ==== " << std::endl << std::endl;
-    }
-
-    void showAllInfoAboutStudent(Student* students, short int sizeOfArr){
-        for(short int i = 0; i < sizeOfArr; i++){
-            std::cout << std::endl << "==== ==== Student #" << i <<  " ==== ==== " << std::endl;
-            std::cout << "Lastname: " << students[i].getLastName() << std::endl;
-            std::cout << "Name: " << students[i].getName() << std::endl;
-            std::cout << "Patronymic: " << students[i].getPatronymic() << std::endl;
-            std::cout << "Date of birth: " << students[i].getDateOfBirth() << std::endl;
-            std::cout << "Address: " << students[i].getAddress() << std::endl;
-            std::cout << "Telephone number: " << students[i].getTelephoneNumber() << std::endl;
-
-            switch (students[i].getFaculty()){
-                case FRT:
-                    std::cout << "Faculty of Radio Engineering and Telecommunications. " << std::endl;
-                break;
-                case FEL:
-                    std::cout << "Faculty of Electronics. " << std::endl;
-                break;
-                case FKTI:
-                    std::cout << "Faculty of Computer Technology and Informatics. " << std::endl;
-                break;
-                case FEA:
-                    std::cout << "Faculty of Electrical Engineering and Automation. " << std::endl;
-                break;
-                case FIBS:
-                    std::cout << "Faculty of Information-Measuring and Biotechnical Systems. " << std::endl;
-                break;
-                case GF:
-                    std::cout << "Faculty of Humanities. " << std::endl;
-                break;
-                default:
-                    std::cout << "Most likely that you made a mistake. " << std::endl;
-                break;
-            }
-
-            switch (students[i].getYearInUniversity()) {
-                case 1:
-                    std::cout << students[i].getName() << " is studying in the "
-                              << students[i].getYearInUniversity()
-                              << "st year. " << students[i].getName()
-                              << " He is a bachelor. " << std::endl;
-                break;
-                case 2:
-                    std::cout << students[i].getName() << " is studying in the "
-                              << students[i].getYearInUniversity()
-                              << "nd year. " << students[i].getName()
-                              << " is a bachelor. " << std::endl;
-                break;
-                case 3:
-                    std::cout << students[i].getName() << " is studying in the "
-                              << students[i].getYearInUniversity()
-                               << "rd year. " << students[i].getName()
-                               << " is a bachelor. " << std::endl;
-                break;
-                case 4:
-                    std::cout << students[i].getName() << " is studying in the "
-                              << students[i].getYearInUniversity()
-                              << "th year. " << students[i].getName()
-                              << " is a bachelor. " << std::endl;
-                break;
-                case 5:
-                    std::cout << students[i].getName() << " is studying in the "
-                              << students[i].getYearInUniversity()
-                              << "th year. " << students[i].getName()
-                              << " has a master's degree. " << std::endl;
-                break;
-                case 6:
-                    std::cout << students[i].getName() << " is studying in the "
-                              << students[i].getYearInUniversity()
-                              << "th year. " << students[i].getName()
-                              << " has a master's degree. " << std::endl;
-                break;
-                default:
-                    std::cout << "Most likely this student has already graduated or "
-                                 "you made a mistake when specifying the year of study." << std::endl;
-                break;
-            }
-
-            std::cout << "==== ==== ==== ==== ==== ==== " << std::endl << std::endl;
-        }
     }
 
     inline bool checkAllocatedMemory(const char* str){
@@ -295,11 +225,10 @@ public:
         else{
             std::cout << ERR_MSG << "year of birth can be: " << YEAR_OF_BIRTH_MIN
                       << " < year < " << YEAR_OF_BIRTH_MAX << ". " << std::endl;
+            return 0;
         }
         delete[] str;
         str = nullptr;
-
-        return 0;
     }
 
     inline const char* getDateOfBirth() { return this->dateOfBirth; }
@@ -449,255 +378,24 @@ public:
 
     void showAllInfoAboutStudentWithSpecificFaculty(Student* students, const short int sizeOfArr,
                                  const short int numberOfFaculty){
-        for(short int i = 0; i < sizeOfArr; i++){
-            if(students[i].getFaculty() == numberOfFaculty){
-                std::cout << std::endl << "==== ==== Student ==== ==== " << std::endl;
-                std::cout << "Lastname: " << students[i].getLastName() << std::endl;
-                std::cout << "Name: " << students[i].getName() << std::endl;
-                std::cout << "Patronymic: " << students[i].getPatronymic() << std::endl;
-                std::cout << "Date of birth: " << students[i].getDateOfBirth() << std::endl;
-                std::cout << "Address: " << students[i].getAddress() << std::endl;
-                std::cout << "Telephone number: " << students[i].getTelephoneNumber() << std::endl;
-
-                switch (students[i].getFaculty()) {
-                    case FRT:
-                        std::cout << "Faculty of Radio Engineering and Telecommunications. " << std::endl;
-                    break;
-                    case FEL:
-                        std::cout << "Faculty of Electronics. " << std::endl;
-                    break;
-                    case FKTI:
-                        std::cout << "Faculty of Computer Technology and Informatics. " << std::endl;
-                    break;
-                    case FEA:
-                        std::cout << "Faculty of Electrical Engineering and Automation. " << std::endl;
-                    break;
-                    case FIBS:
-                        std::cout << "Faculty of Information-Measuring and Biotechnical Systems. " << std::endl;
-                    break;
-                    case GF:
-                        std::cout << "Faculty of Humanities. " << std::endl;
-                    break;
-                    default:
-                        std::cout << "Most likely that you made a mistake. " << std::endl;
-                    break;
-                }
-
-                switch (students[i].getYearInUniversity()) {
-                    case 1:
-                        std::cout << students[i].getName() << " is studying in the "
-                                  << students[i].getYearInUniversity()
-                                  << "st year. " << students[i].getName()
-                                  << " He is a bachelor. " << std::endl;
-                    break;
-                    case 2:
-                        std::cout << students[i].getName() << " is studying in the "
-                                  << students[i].getYearInUniversity()
-                                  << "nd year. " << students[i].getName()
-                                  << " is a bachelor. " << std::endl;
-                    break;
-                    case 3:
-                        std::cout << students[i].getName() << " is studying in the "
-                                  << students[i].getYearInUniversity()
-                                   << "rd year. " << students[i].getName()
-                                   << " is a bachelor. " << std::endl;
-                    break;
-                    case 4:
-                        std::cout << students[i].getName() << " is studying in the "
-                                  << students[i].getYearInUniversity()
-                                  << "th year. " << students[i].getName()
-                                  << " is a bachelor. " << std::endl;
-                    break;
-                    case 5:
-                        std::cout << students[i].getName() << " is studying in the "
-                                  << students[i].getYearInUniversity()
-                                  << "th year. " << students[i].getName()
-                                  << " has a master's degree. " << std::endl;
-                    break;
-                    case 6:
-                        std::cout << students[i].getName() << " is studying in the "
-                                  << students[i].getYearInUniversity()
-                                  << "th year. " << students[i].getName()
-                                  << " has a master's degree. " << std::endl;
-                    break;
-                    default:
-                        std::cout << "Most likely this student has already graduated or "
-                                     "you made a mistake when specifying the year of study." << std::endl;
-                    break;
-                }
-
-                std::cout << "==== ==== ==== ==== ==== ==== " << std::endl << std::endl;
-            }
-        }
+        for(short int i = 0; i < sizeOfArr; i++)
+            if(students[i].getFaculty() == numberOfFaculty)
+                showAllInfoAboutStudent(students, sizeOfArr, i);
     }
 
     void showAllInfoAboutStudentWithSpecificYearOfBirth(Student* students, const short int sizeOfArr,
                                  const short int yearOfBirth){
-        for(short int i = 0; i < sizeOfArr; i++){
-            if(getYearFromDateOfBirth(students[i].getDateOfBirth()) > yearOfBirth){
-                std::cout << std::endl << "==== ==== Student ==== ==== " << std::endl;
-                std::cout << "Lastname: " << students[i].getLastName() << std::endl;
-                std::cout << "Name: " << students[i].getName() << std::endl;
-                std::cout << "Patronymic: " << students[i].getPatronymic() << std::endl;
-                std::cout << "Date of birth: " << students[i].getDateOfBirth() << std::endl;
-                std::cout << "Address: " << students[i].getAddress() << std::endl;
-                std::cout << "Telephone number: " << students[i].getTelephoneNumber() << std::endl;
-
-                switch (students[i].getFaculty()) {
-                    case FRT:
-                        std::cout << "Faculty of Radio Engineering and Telecommunications. " << std::endl;
-                    break;
-                    case FEL:
-                        std::cout << "Faculty of Electronics. " << std::endl;
-                    break;
-                    case FKTI:
-                        std::cout << "Faculty of Computer Technology and Informatics. " << std::endl;
-                    break;
-                    case FEA:
-                        std::cout << "Faculty of Electrical Engineering and Automation. " << std::endl;
-                    break;
-                    case FIBS:
-                        std::cout << "Faculty of Information-Measuring and Biotechnical Systems. " << std::endl;
-                    break;
-                    case GF:
-                        std::cout << "Faculty of Humanities. " << std::endl;
-                    break;
-                    default:
-                        std::cout << "Most likely that you made a mistake. " << std::endl;
-                    break;
-                }
-
-                switch (students[i].getYearInUniversity()) {
-                    case 1:
-                        std::cout << students[i].getName() << " is studying in the "
-                                  << students[i].getYearInUniversity()
-                                  << "st year. " << students[i].getName()
-                                  << " He is a bachelor. " << std::endl;
-                    break;
-                    case 2:
-                        std::cout << students[i].getName() << " is studying in the "
-                                  << students[i].getYearInUniversity()
-                                  << "nd year. " << students[i].getName()
-                                  << " is a bachelor. " << std::endl;
-                    break;
-                    case 3:
-                        std::cout << students[i].getName() << " is studying in the "
-                                  << students[i].getYearInUniversity()
-                                   << "rd year. " << students[i].getName()
-                                   << " is a bachelor. " << std::endl;
-                    break;
-                    case 4:
-                        std::cout << students[i].getName() << " is studying in the "
-                                  << students[i].getYearInUniversity()
-                                  << "th year. " << students[i].getName()
-                                  << " is a bachelor. " << std::endl;
-                    break;
-                    case 5:
-                        std::cout << students[i].getName() << " is studying in the "
-                                  << students[i].getYearInUniversity()
-                                  << "th year. " << students[i].getName()
-                                  << " has a master's degree. " << std::endl;
-                    break;
-                    case 6:
-                        std::cout << students[i].getName() << " is studying in the "
-                                  << students[i].getYearInUniversity()
-                                  << "th year. " << students[i].getName()
-                                  << " has a master's degree. " << std::endl;
-                    break;
-                    default:
-                        std::cout << "Most likely this student has already graduated or "
-                                     "you made a mistake when specifying the year of study." << std::endl;
-                    break;
-                }
-
-                std::cout << "==== ==== ==== ==== ==== ==== " << std::endl << std::endl;
-            }
-        }
+        for(short int i = 0; i < sizeOfArr; i++)
+            if(getYearFromDateOfBirth(students[i].getDateOfBirth()) > yearOfBirth)
+                showAllInfoAboutStudent(students, sizeOfArr, i);
     }
 
     void showAllInfoAboutStudentWithSpecificFacultyAndYearInUniversity(Student* students,
                                                                        const short int sizeOfArr,
                                  const short int numberOfFaculty, const short int yearInUniversityParam){
-        for(short int i = 0; i < sizeOfArr; i++){
+        for(short int i = 0; i < sizeOfArr; i++)
             if(students[i].getFaculty() == numberOfFaculty &&
-                    students[i].getYearInUniversity() == yearInUniversityParam){
-                std::cout << std::endl << "==== ==== Student ==== ==== " << std::endl;
-                std::cout << "Lastname: " << students[i].getLastName() << std::endl;
-                std::cout << "Name: " << students[i].getName() << std::endl;
-                std::cout << "Patronymic: " << students[i].getPatronymic() << std::endl;
-                std::cout << "Date of birth: " << students[i].getDateOfBirth() << std::endl;
-                std::cout << "Address: " << students[i].getAddress() << std::endl;
-                std::cout << "Telephone number: " << students[i].getTelephoneNumber() << std::endl;
-
-                switch (students[i].getFaculty()) {
-                    case FRT:
-                        std::cout << "Faculty of Radio Engineering and Telecommunications. " << std::endl;
-                    break;
-                    case FEL:
-                        std::cout << "Faculty of Electronics. " << std::endl;
-                    break;
-                    case FKTI:
-                        std::cout << "Faculty of Computer Technology and Informatics. " << std::endl;
-                    break;
-                    case FEA:
-                        std::cout << "Faculty of Electrical Engineering and Automation. " << std::endl;
-                    break;
-                    case FIBS:
-                        std::cout << "Faculty of Information-Measuring and Biotechnical Systems. " << std::endl;
-                    break;
-                    case GF:
-                        std::cout << "Faculty of Humanities. " << std::endl;
-                    break;
-                    default:
-                        std::cout << "Most likely that you made a mistake. " << std::endl;
-                    break;
-                }
-
-                switch (students[i].getYearInUniversity()) {
-                    case 1:
-                        std::cout << students[i].getName() << " is studying in the "
-                                  << students[i].getYearInUniversity()
-                                  << "st year. " << students[i].getName()
-                                  << " He is a bachelor. " << std::endl;
-                    break;
-                    case 2:
-                        std::cout << students[i].getName() << " is studying in the "
-                                  << students[i].getYearInUniversity()
-                                  << "nd year. " << students[i].getName()
-                                  << " is a bachelor. " << std::endl;
-                    break;
-                    case 3:
-                        std::cout << students[i].getName() << " is studying in the "
-                                  << students[i].getYearInUniversity()
-                                   << "rd year. " << students[i].getName()
-                                   << " is a bachelor. " << std::endl;
-                    break;
-                    case 4:
-                        std::cout << students[i].getName() << " is studying in the "
-                                  << students[i].getYearInUniversity()
-                                  << "th year. " << students[i].getName()
-                                  << " is a bachelor. " << std::endl;
-                    break;
-                    case 5:
-                        std::cout << students[i].getName() << " is studying in the "
-                                  << students[i].getYearInUniversity()
-                                  << "th year. " << students[i].getName()
-                                  << " has a master's degree. " << std::endl;
-                    break;
-                    case 6:
-                        std::cout << students[i].getName() << " is studying in the "
-                                  << students[i].getYearInUniversity()
-                                  << "th year. " << students[i].getName()
-                                  << " has a master's degree. " << std::endl;
-                    break;
-                    default:
-                        std::cout << "Most likely this student has already graduated or "
-                                     "you made a mistake when specifying the year of study." << std::endl;
-                    break;
-                }
-
-                std::cout << "==== ==== ==== ==== ==== ==== " << std::endl << std::endl;
-            }
-        }
+                    students[i].getYearInUniversity() == yearInUniversityParam)
+                showAllInfoAboutStudent(students, sizeOfArr, i);
     }
 };
