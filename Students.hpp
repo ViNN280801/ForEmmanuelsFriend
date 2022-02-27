@@ -1,5 +1,4 @@
 #include <iostream>
-#include <exception>
 
 #define ERR_MSG "Error: "
 #define NUL '\0'
