@@ -1,7 +1,7 @@
 #include "Students.hpp"
 
 //#define __test_with_static_variables__
-//#define __test_with_user_variables
+#define __test_with_user_variables
 
 int main(int argc, char* argv[]){
     const short int size { 10 };
@@ -120,7 +120,10 @@ int main(int argc, char* argv[]){
                  YEAR_OF_BIRTH_MAX << "): ";
     std::cin >> var1;
     students->showAllInfoAboutStudentWithSpecificYearOfBirth(students, size, var1);
-    students->showAllInfoAboutStudent(students, size);
+
+    for(short int i = 0; i < size; i++)
+        students->showAllInfoAboutStudent(students, size, i);
+
 
     std::cout << "Faculties: \n0. Faculty of Radio Engineering and Telecommunications."
                  "\n1. Faculty of Electronics. "
@@ -130,7 +133,7 @@ int main(int argc, char* argv[]){
                  "\n5. Faculty of Humanities. "
                  "\nEnter number of faculty: ";
     std::cin >> var1;
-    std::cout << "Enter number of year in university (0 < year < 7): " << std::endl;
+    std::cout << "Enter number of year in university (0 < year < 7): ";
     std::cin >> var2;
     students->showAllInfoAboutStudentWithSpecificFacultyAndYearInUniversity(students, size, var1, var2);
 #endif

@@ -377,24 +377,45 @@ public:
 
     void showAllInfoAboutStudentWithSpecificFaculty(Student* students, const short int sizeOfArr,
                                  const short int numberOfFaculty){
+        unsigned short int isSearchResultIsEmpty {};
+
         for(short int i = 0; i < sizeOfArr; i++)
-            if(students[i].getFaculty() == numberOfFaculty)
+            if(students[i].getFaculty() == numberOfFaculty){
                 showAllInfoAboutStudent(students, sizeOfArr, i);
+                isSearchResultIsEmpty++;
+            }
+
+        if(isSearchResultIsEmpty == 0)
+            std::cout << "No results found for your query. " << std::endl;
     }
 
     void showAllInfoAboutStudentWithSpecificYearOfBirth(Student* students, const short int sizeOfArr,
                                  const short int yearOfBirth){
+        unsigned short int isSearchResultIsEmpty {};
+
         for(short int i = 0; i < sizeOfArr; i++)
-            if(getYearFromDateOfBirth(students[i].getDateOfBirth()) > yearOfBirth)
+            if(getYearFromDateOfBirth(students[i].getDateOfBirth()) > yearOfBirth){
                 showAllInfoAboutStudent(students, sizeOfArr, i);
+                isSearchResultIsEmpty++;
+            }
+
+        if(isSearchResultIsEmpty == 0)
+            std::cout << "No results found for your query. " << std::endl;
     }
 
     void showAllInfoAboutStudentWithSpecificFacultyAndYearInUniversity(Student* students,
                                                                        const short int sizeOfArr,
                                  const short int numberOfFaculty, const short int yearInUniversityParam){
+        unsigned short int isSearchResultIsEmpty {};
+
         for(short int i = 0; i < sizeOfArr; i++)
             if(students[i].getFaculty() == numberOfFaculty &&
-                    students[i].getYearInUniversity() == yearInUniversityParam)
+                    students[i].getYearInUniversity() == yearInUniversityParam){
                 showAllInfoAboutStudent(students, sizeOfArr, i);
+                isSearchResultIsEmpty++;
+            }
+
+        if(isSearchResultIsEmpty == 0)
+            std::cout << "No results found for your query. " << std::endl;
     }
 };
