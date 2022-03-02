@@ -9,6 +9,8 @@
 #define YEAR_OF_BIRTH_MIN 1962
 #define YEAR_OF_BIRTH_MAX 2005
 
+#define BUFF_SIZE 256
+
 class Student{
 private:
     enum Faculties {
@@ -354,6 +356,7 @@ public:
             exit(EXIT_FAILURE);
         }
     }
+
     inline void setFaculty(short int newFaculty){
         if(newFaculty >= 0 && newFaculty <= 5)
             this->faculty = newFaculty;
@@ -417,5 +420,84 @@ public:
 
         if(isSearchResultIsEmpty == 0)
             std::cout << "No results found for your query. " << std::endl;
+    }
+
+    inline void clearCharPtrMem(char* ptr){     //method just for clear memory (anti-cumbersome code)
+        delete[] ptr;
+        ptr = nullptr;
+        ptr = new char[BUFF_SIZE];
+    }
+
+    void fillStudent(Student* students, const short int sizeOfArr){  //method of filling the Student obj
+        char* tmpStr = new char[BUFF_SIZE];
+        char* dobStr = new char[11];
+        unsigned long int tlphNum {};
+        unsigned short int tmpFaculty {};
+        short int yearInUn {};
+
+        char clsBuffer {};
+
+        for(short int studentIter = 0; studentIter < sizeOfArr; studentIter++){
+            std::cout << "Enter lastname: ";
+            scanf("%[^\n]", tmpStr);
+            students[studentIter].setLastName(tmpStr);
+
+            clearCharPtrMem(tmpStr);
+
+            std::cout << "Enter name: ";
+            scanf("%c", &clsBuffer); // this scanf just for do not let program skip next scanf -
+                                     // smth like clear the buffer
+            scanf("%[^\n]", tmpStr);
+
+            size_t nameSize { returnsCountOfElementsInCharArray(tmpStr) };
+            for(size_t i = 0; i < nameSize; i++) //this loop is for remove \n symbol
+                if(*(tmpStr + i) == '\n')        // for a beautiful display of info
+                    *(tmpStr + i) = NUL;         // in switch -> line 110
+
+            students[studentIter].setName(tmpStr); //setting name
+            clearCharPtrMem(tmpStr);    // clearing earlier allocated memory and reallocating new memory
+
+            std::cout << "Enter patronymic: ";
+            scanf("%c", &clsBuffer);
+            scanf("%[^\n]", tmpStr);
+            students[studentIter].setPatronymic(tmpStr);
+
+            clearCharPtrMem(tmpStr);
+
+            std::cout << "Enter date of birth (dd.mm.yyyy): ";
+            scanf("%11s", dobStr); // %11s is available for only 11 symbols
+            students[studentIter].setDateOfBirth(dobStr);
+
+            std::cout << "Enter address: ";
+            scanf("%c", &clsBuffer);
+            scanf("%[^\n]", tmpStr);
+            students[studentIter].setAddress(tmpStr);
+
+            clearCharPtrMem(tmpStr);
+
+            std::cout << "Enter telephone number (8XXX-XXX-XX-XX -> without symbol \'-\'): ";
+            std::cin >> tlphNum;
+            students[studentIter].setTelephoneNumber(tlphNum);
+
+            std::cout << "Faculties: \n0. Faculty of Radio Engineering and Telecommunications."
+                         "\n1. Faculty of Electronics. "
+                         "\n2. Faculty of Computer Technology and Informatics. "
+                         "\n3. Faculty of Electrical Engineering and Automation. "
+                         "\n4. Faculty of Information-Measuring and Biotechnical Systems. "
+                         "\n5. Faculty of Humanities. "
+                         "\nEnter number of faculty: ";
+            std::cin >> tmpFaculty;
+            students[studentIter].setFaculty(tmpFaculty);
+
+            std::cout << "Enter year (1 <= year <= 7): ";
+            std::cin >> yearInUn;
+            students[studentIter].setYearInUniversity(yearInUn);
+        }
+
+        delete[] dobStr;
+        dobStr = nullptr;
+
+        delete[] tmpStr;
+        tmpStr = nullptr;
     }
 };

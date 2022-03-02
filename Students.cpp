@@ -1,13 +1,13 @@
 #include "Students.hpp"
 
 //#define __test_with_static_variables__
-#define __test_with_user_variables
+//#define __test_with_user_variables
 
 int main(int argc, char* argv[]){
-    const short int size { 10 };
+    const short int size { 1 };
     Student* students = new Student[size];
 
-    students[0].setLastName("Baranov");
+    /*students[0].setLastName("Baranov");
     students[0].setName("Yan");
     students[0].setPatronymic("Semenovich");
     students[0].setDateOfBirth("20.12.1982");
@@ -96,6 +96,7 @@ int main(int argc, char* argv[]){
     students[9].setYearInUniversity(6);
     students[9].setTelephoneNumber(89602402578);
     students[9].setFaculty(4);
+    */
 
 #ifdef __test_with_static_variables__
     students->showAllInfoAboutStudentWithSpecificFaculty(students, size, 0);
@@ -137,6 +138,10 @@ int main(int argc, char* argv[]){
     std::cin >> var2;
     students->showAllInfoAboutStudentWithSpecificFacultyAndYearInUniversity(students, size, var1, var2);
 #endif
+    students->fillStudent(students, size);
+
+    for(short int iter = 0; iter < size; iter++)
+        students->showAllInfoAboutStudent(students, size, iter);
 
     delete[] students;
     students = nullptr;
